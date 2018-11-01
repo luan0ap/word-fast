@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import get from './api'
-
-get().then(console.log)
+import getData from './api'
 
 class App extends Component {
   render () {
