@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import React, { Component, Fragment } from 'react'
-import getData from './api'
+import getWords from './api'
 import Header from './components/Header'
 import './style.css'
 
@@ -9,12 +9,14 @@ class App extends Component {
     super()
     this.state = {
       words: [],
-      current: ''
+      current: '',
+      time: 3,
+      score: 0
     }
   }
 
   componentDidMount () {
-    getData().then(({ data }) => this.setState(({ words }) => ({ words: [...data.words] })))
+    getWords().then(({ data }) => this.setState(({ words }) => ({ words: [...data.words] })))
   }
 
   verifyWord = () => {
@@ -38,9 +40,10 @@ class App extends Component {
             <input type='text' className='send' onKeyDown={this.verifyWord} />
           </section>
 
+          {/*
           <section className='timer-score'>
 
-            <div className='timer-form'>
+            <div className='info-form'>
               <label htmlFor='timer'>Time left: </label>
               <input type='time' name='timer' id='timer' className='timer' value='00:04' disabled />
             </div>
@@ -51,6 +54,7 @@ class App extends Component {
             </div>
             
           </section>
+        */}
         </main>
       </>
     )
