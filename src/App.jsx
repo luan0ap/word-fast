@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import React, { Component, Fragment } from 'react'
 import getWords from './api'
+import randomItem from './utils/randomItem'
 import Header from './components/Header'
 import './style.css'
 
@@ -16,7 +17,10 @@ class App extends Component {
   }
 
   componentDidMount () {
-    getWords().then(({ data }) => this.setState(({ words }) => ({ words: [...data.words] })))
+    getWords().then(({ data }) => this.setState(({ words, current }) => ({
+      words: [...data.words],
+      current: randomItem([...data.words])
+    })))
   }
 
   verifyWord = () => {
@@ -24,6 +28,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <>
         <Header>
@@ -35,7 +40,7 @@ class App extends Component {
         <main className='content-game'>
 
           <section className='inputs-words'>
-            <input type='text' disabled='disabled' className='words' value={this.state.words[Math.floor(Math.random() * this.state.words.length)]} />
+            <input type='text' disabled='disabled' className='words' value={this.state.current} />
 
             <input type='text' className='send' onKeyDown={this.verifyWord} />
           </section>
