@@ -23,7 +23,7 @@ class App extends Component {
      
   }
 
-  render () {
+  render() {
     return (
       <>
         <Header>
@@ -40,21 +40,15 @@ class App extends Component {
             <input type='text' className='send' onKeyDown={this.verifyWord} />
           </section>
 
-          {/*
           <section className='timer-score'>
 
-            <div className='info-form'>
-              <label htmlFor='timer'>Time left: </label>
-              <input type='time' name='timer' id='timer' className='timer' value='00:04' disabled />
-            </div>
+            <label htmlFor='timer'>Time left: </label>
+            <input type='time' name='timer' id='timer' className='timer' value='00:04' disabled />
 
-            <div className="score-form">
-              <label htmlFor="score">Score: </label>
-              <input type='number' name='score' id='score' disabled='disabled' />
-            </div>
-            
+            <label htmlFor="score">Score: </label>
+            <input type='number' name='score' id='score' value='0' disabled />
+
           </section>
-        */}
         </main>
       </>
     )

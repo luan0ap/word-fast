@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -7,6 +6,7 @@ body {
 }
 
 /*Main content style*/
+
 .content-game {
   width: 100vw;
   display: flex;
@@ -15,11 +15,12 @@ body {
 }
 
 /*Random word box style*/
+
 .inputs-words {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 90%;
-  padding: 5%
 }
 
 /*Random word style*/
@@ -27,15 +28,22 @@ body {
 .inputs-words > .words {
   margin: 1em auto;
   width: inherit;
-  font-size: 4rem;
+  font-size: 3em;
   text-align: center;
   color: #4d4d4d;
   border: none;
-  outline: none; 
-  background: transparent; 
+  outline: none;
+  background: transparent;
+}
+
+@media screen and (min-width: 600px) {
+  .inputs-words > .words {
+    font-size: 4em
+  }
 }
 
 /*Input to test style*/
+
 .inputs-words > .send {
   height: 40px;
   width: 100%;
@@ -44,4 +52,37 @@ body {
   color: #4d4d4d;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+@media screen and (min-width: 600px) {
+  .inputs-words > .send {
+    width: 20em
+  }
+}
+
+/*Time and score box style*/
+
+.timer-score {
+  width: 90%;
+  margin-top: 1em;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-areas: "label timer" "label score";
+  font-size: 1.1em
+}
+
+@media screen and (min-width: 600px) {
+  .timer-score {
+    justify-content: center;
+    grid-gap: 0;
+    grid-auto-columns: 7em 5em 7em 5em;
+    grid-template-areas: "labelT timer labelS score";
+    font-size: 1.2em
+  }
+}
+
+.timer-score > input {
+  border: none;
+  outline: none;
+  background: transparent;
 }
