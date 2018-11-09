@@ -5,6 +5,12 @@ html, body {
   letter-spacing: 0.1rem;
 }
 
+input {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
 /*Main content style*/
 
 .content-game {
@@ -31,9 +37,6 @@ html, body {
   font-size: 3em;
   text-align: center;
   color: #4d4d4d;
-  border: none;
-  outline: none;
-  background: transparent;
 }
 
 @media screen and (min-width: 600px) {
@@ -48,7 +51,6 @@ html, body {
   height: 40px;
   width: 100%;
   font-size: 1.5em;
-  outline: none;
   color: #4d4d4d;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -74,6 +76,7 @@ html, body {
 @media screen and (min-width: 600px) {
   .timer-score {
     justify-content: center;
+    align-items: center;
     grid-gap: 0;
     grid-auto-columns: 7em 5em 7em 5em;
     grid-template-areas: "labelT timer labelS score";
@@ -81,8 +84,9 @@ html, body {
   }
 }
 
-.timer-score > input {
-  border: none;
-  outline: none;
-  background: transparent;
+/*Timer and scrore span style*/
+
+.timer-score > .timer,
+.timer-score > .score {
+  font-size: 0.8em
 }
