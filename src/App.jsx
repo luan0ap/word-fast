@@ -25,21 +25,21 @@ class App extends Component {
     })))
   }
 
-  timer = (remaning) => {
-    if (remaning) {
-      this.setState({ time: this.state.time - 1 })
-      setTimeout(this.timer, 1000, remaning - 1)
-    }
-  }
+  randomizeWords = () => this.setState(({ randomWord, words }) => ({ randomWord: randomItem(words) }))
+
+  addScore = () => this.setState({ score: this.state.score + 1 })
 
   startChallenge = ({ target }) => {
     const { randomWord } = this.state
 
-    this.timer(this.state.time)
+    if (target.value === randomWord) {
+      this.addScore()
+      this.randomizeWords()
+      target.value = ''
+    }
   }
 
   render() {
-
     return (
       <>
         <Header>
