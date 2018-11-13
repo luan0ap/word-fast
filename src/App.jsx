@@ -11,11 +11,9 @@ class App extends Component {
     this.state = {
       words: [],
       randomWord: '',
-      time: 3,
-      score: 0
+      time: 5,
+      score: 0,
     }
-
-    this.$inputTimer = React.createRef()
   }
 
   componentDidMount() {
@@ -29,12 +27,32 @@ class App extends Component {
 
   addScore = () => this.setState({ score: this.state.score + 1 })
 
+  globalTimeOut = {
+    timeouts: [],
+    setTimeout(...args) {
+      this.timeouts.push(window.setTimeout(...args))
+    },
+    clearAllTimeout() {
+      this.timeouts.forEach(times => window.clearTimeout(times))
+      this.timeouts = []
+    }
+  }
+
+  timer = (remaning) => {
+    if (remaning) {
+      this.setState({ time: this.state.time - 1 })
+      this.globalTimeOut.setTimeout(this.timer, 1000, remaning - 1)
+    }
+  }
+
   startChallenge = ({ target }) => {
-    const { randomWord } = this.state
+    const { randomWord, time } = this.state
 
     if (target.value === randomWord) {
       this.addScore()
       this.randomizeWords()
+      this.globalTimeOut.clearAllTimeout()
+      this.timer(5)
       target.value = ''
     }
   }
@@ -44,7 +62,7 @@ class App extends Component {
       <>
         <Header>
           <span className='desc'>
-            Just type word in less 3 seconds
+            Just type word in less 5 seconds
           </span>
         </Header>
 
