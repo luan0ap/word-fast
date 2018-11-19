@@ -21,27 +21,23 @@ class App extends Component {
       words: [...data.words],
       randomWord: randomItem([...data.words])
     })))
+
+    this.timer(5)
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer)
   }
 
   randomizeWords = () => this.setState(({ randomWord, words }) => ({ randomWord: randomItem(words) }))
 
   addScore = () => this.setState({ score: this.state.score + 1 })
 
-  globalTimeOut = {
-    timeouts: [],
-    setTimeout(...args) {
-      this.timeouts.push(window.setTimeout(...args))
-    },
-    clearAllTimeout() {
-      this.timeouts.forEach(times => window.clearTimeout(times))
-      this.timeouts = []
-    }
-  }
 
   timer = (remaning) => {
     if (remaning) {
       this.setState({ time: this.state.time - 1 })
-      this.globalTimeOut.setTimeout(this.timer, 1000, remaning - 1)
+      setTimeout(this.timer, 1000, remaning - 1)
     }
   }
 
@@ -51,8 +47,6 @@ class App extends Component {
     if (target.value === randomWord) {
       this.addScore()
       this.randomizeWords()
-      this.globalTimeOut.clearAllTimeout()
-      this.timer(5)
       target.value = ''
     }
   }
